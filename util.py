@@ -5,5 +5,5 @@ def log(text, to_print: bool):
     logs.append(text)
 
 def save_logs(file):
-    with open(file, "w") as f:
+    with open(file, "x") as f:
         f.writelines(logs)

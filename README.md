@@ -8,7 +8,7 @@ Extract and parse tables from spreadsheet files in a local-hosted LLM
 * Cross-compatibility
 * Doesn't need to be standalone
     * External requirements should be limited
-* Can be a CLI tool (though keep in mind it should be in GUI later)
+* Can be a CLI tool (though keep in mind it may be in GUI later)
 * Doesn't have to remain in `.ocr`
 
 ### LLM Options:
@@ -22,6 +22,16 @@ Extract and parse tables from spreadsheet files in a local-hosted LLM
 >
 > Other models listed in Llama's README are not relevant for this project.
 
-## Requests
+### Hosting Options:
+
+* Local host
+    * Involves a localhost endpoint as well (server pointer may default to `127.0.0.1` or `localhost`)
+* Non-local self host
+    * Encryption options (RSA?)
+
+## Questions
 
 * Hardware limitations (PC, laptop, etc)
+* Hosting option (may be both)
+* Licensing
+* Environment?
