@@ -1,8 +1,8 @@
 import argparse
-import requests
-import json
 import os
 import datetime
+
+import requests
 
 import util
 
@@ -16,24 +16,6 @@ port = "11434"
 
 conversation = []
 
-def request(model, question):
-    url = server
-    
-    headers = { "Content-Type": "application/json" }
-
-    data = {
-        "model": model,
-        "prompt": question,
-        "stream": False
-    }
-
-    response = requests.post(url, headers=headers, data=json.dumps(data))
-
-    if (response.status_code == 200):
-        return json.loads(response.text)[response]
-    else:
-        return f"Request to {server} failed with code {response.status_code}: {response.text}"
-
 def main():
     # globals
     global conversefile
@@ -41,7 +23,7 @@ def main():
     global server
     global port
 
-    logfile = "/logs/" + (str(datetime.datetime.now())
+    logfile = "\\logs\\" + (str(datetime.datetime.now())
         .split(".")[0]
         .replace(" ","_")
         .replace(":","-"))
@@ -66,7 +48,15 @@ def main():
     server = args.localsource
 
     if (server == None): server = "127.0.0.1"
-    server += port + "/api/generate"
+    # server += port + "/api/generate"
+
+    server = f"http://{server}:{port}"
+    print(server)
+    data = '{"query":"can you hear me?"}'
+    headers = {"Content-Type": "application/json"}
+    print(data)
+    response = requests.post(server, json=data, headers=headers)
+    print(response.status_code, response.reason)
 
 if (__name__ == "__main__"):
     main()

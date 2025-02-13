@@ -1,2 +1,4 @@
-__pycache__/*
-logs/*
+client/__pycache__/*
+server/__pycache__/*
+client/logs/*
+server/logs/*
