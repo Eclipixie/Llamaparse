@@ -2,7 +2,7 @@ import argparse
 import os
 import datetime
 
-import requests
+import llama_client
 
 import util
 
@@ -12,7 +12,7 @@ conversefile = ""
 logfile = ""
 
 server = ""
-port = "11434"
+port = "8321"
 
 conversation = []
 
@@ -48,15 +48,9 @@ def main():
     server = args.localsource
 
     if (server == None): server = "127.0.0.1"
-    # server += port + "/api/generate"
 
-    server = f"http://{server}:{port}"
-    print(server)
-    data = '{"query":"can you hear me?"}'
-    headers = {"Content-Type": "application/json"}
-    print(data)
-    response = requests.post(server, json=data, headers=headers)
-    print(response.status_code, response.reason)
+    client = llama_client.create_http_client(port)
+    llama_client.request(client, "hello")
 
 if (__name__ == "__main__"):
     main()
