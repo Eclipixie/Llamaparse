@@ -49,9 +49,14 @@ def main():
 
     if (server == None): server = "127.0.0.1"
 
+    datatxt = "no data"
+    with open(dataset, "r") as file:
+        datatxt = file.read()
+
     client = llama_client.create_http_client(port)
-    llama_client.request(client, "hello")
+    res = llama_client.request(client, "list the column headers of this data.", datatxt)
+    util.log(res.completion_message.content, True)
 
 if (__name__ == "__main__"):
     main()
-    util.save_logs(dir_path + logfile)
+    util.save_logs(dir_path + logfile + ".log")
